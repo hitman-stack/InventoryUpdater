@@ -4,7 +4,7 @@ using System.Text;
 
 namespace InventoryUpdater.Models
 {
-    class CapterraModel
+    public class CapterraModel
     {
         public string  tags { get; set; }
         public string  name { get; set; }

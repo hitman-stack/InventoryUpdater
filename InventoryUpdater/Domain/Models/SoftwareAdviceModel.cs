@@ -4,11 +4,11 @@ using System.Text;
 
 namespace InventoryUpdater.Models
 {
-    class SoftwareAdviceModel
+    public class SoftwareAdviceModel
     {
-        public List<SoftwareAdviceBase> ProductList { get; set; }
+        public List<SoftwareAdviceBase> products { get; set; }
     }
-    class SoftwareAdviceBase
+   public  class SoftwareAdviceBase
     {
         public List<string>  categories { get; set; }
         public string twitter { get; set; }

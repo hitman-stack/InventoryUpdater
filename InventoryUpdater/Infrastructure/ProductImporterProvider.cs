@@ -8,12 +8,12 @@ namespace InventoryUpdater.Infrastructure
 {
     class ProductImporterProvider : IProductImporter
     {
-       public string ProcessImporter(string input)
+       public List<string> ProcessImporter(string input)
         {
             var results = Load(input);
-            return "hello";
+            return results;
         }
-        public string Load(string input)
+        public List<string> Load(string input)
         {
             List<string> productResults = new List<string>();
             string[] inputPath;
@@ -26,12 +26,25 @@ namespace InventoryUpdater.Infrastructure
             var fileName = GetFileName(filePath);
             var extension = GetFileExtension(fileName);
             Console.WriteLine("Filename is {0} with extension {1}", fileName, extension);
-            string fileLocation= @"C:\Users\Mohit Mishra\Documents\GitHub\InventoryUpdater\InventoryUpdater\Assets\feed-products\capterra.yaml";
+            string fileLocation;
+            if (fileName.ToLower().Equals("capterra.yaml"))
+            {
+                fileLocation = @"C:\Users\Mohit Mishra\Documents\GitHub\InventoryUpdater\InventoryUpdater\Assets\feed-products\capterra.yaml";
+            }
+            else
+            {
+                fileLocation = @"C:\Users\Mohit Mishra\Documents\GitHub\InventoryUpdater\InventoryUpdater\Assets\feed-products\softwareadvice.json";
+            }
+            
             string fileContent = File.ReadAllText(fileLocation);
             FileReaderFactory fileReaderFactory = new FileReaderFactory();
             IFileReader fileReader= fileReaderFactory.GetExtensionReader(extension);
             productResults = fileReader.Read(extension, fileContent);
-            return "Hello";
+            return productResults;
+        }
+        public bool Validation(string [] input)
+        {
+            return true;
         }
         public string GetFileName(string input)
         {

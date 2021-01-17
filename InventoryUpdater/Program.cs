@@ -14,7 +14,10 @@ namespace InventoryUpdater
                 string inputSource = Console.ReadLine();
                 ProductImporterOrchestrator productImporterOrchestrator = new ProductImporterOrchestrator();
                 var result = productImporterOrchestrator.ProcessImporter(inputSource);
-                Console.WriteLine(result);
+                foreach(var item in result)
+                {
+                    Console.WriteLine(item);
+                }
             }
             catch(Exception ex)
             {

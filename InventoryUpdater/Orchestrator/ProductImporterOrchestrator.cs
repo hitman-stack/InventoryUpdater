@@ -9,7 +9,7 @@ namespace InventoryUpdater.Orchestrator
     class ProductImporterOrchestrator
     {
          ProductImporterProvider productImporterProvider = new ProductImporterProvider();
-        public string ProcessImporter(string input)
+        public List<string> ProcessImporter(string input)
         {
             return productImporterProvider.ProcessImporter(input);
         }
