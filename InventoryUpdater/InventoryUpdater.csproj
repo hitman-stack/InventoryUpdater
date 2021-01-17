@@ -5,4 +5,11 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Assets\" />
+    <Folder Include="Infrastructure\DataAccess\" />
+    <Folder Include="Shared\" />
+    <Folder Include="Orchestrator\" />
+  </ItemGroup>
+
 </Project>
