@@ -4,8 +4,8 @@ using System.Text;
 
 namespace InventoryUpdater.Domain.Interfaces
 {
-    interface IDatabaseSource
+    interface IDatabaseProvider
     {
-        List<string> Save(string input);
+        string SaveProducts(List<string> input);
     }
 }

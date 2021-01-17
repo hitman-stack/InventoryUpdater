@@ -4,7 +4,18 @@ using System.Text;
 
 namespace InventoryUpdater.Shared
 {
-    class CommonUtils
+  public static  class CommonUtils
     {
+        public static string GetFileName(string input)
+        {
+            string[] pathFileName = input.Split("/");
+            return pathFileName[1];
+        }
+        public static string GetFileExtension(string fileName)
+        {
+            int extensionStart = fileName.IndexOf('.');
+            return fileName.Substring(extensionStart + 1);
+        }
+
     }
 }
