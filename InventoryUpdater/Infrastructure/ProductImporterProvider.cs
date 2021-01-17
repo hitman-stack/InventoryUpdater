@@ -7,7 +7,7 @@ using System.Text;
 
 namespace InventoryUpdater.Infrastructure
 {
-    class ProductImporterProvider : IProductImporter
+    public class ProductImporterProvider : IProductImporter
     {
        public List<string> ProcessImporter(string input, string databaseSource)
         {
@@ -25,7 +25,6 @@ namespace InventoryUpdater.Infrastructure
             //We will first validate if we have 3 parts or not
             if (inputPath.Length != 3)
             {
-                Console.WriteLine("Invalid input passed. Please pass input in the given format!");
                 throw new FormatException(message: "Incorrect format!");
             }
             
@@ -44,6 +43,10 @@ namespace InventoryUpdater.Infrastructure
                 }
                 string fileContent = File.ReadAllText(fileLocation);
                 FileReaderFactory fileReaderFactory = new FileReaderFactory();
+            if(extension.Length < 3)
+            {
+                throw new FormatException(message: "Invalid file extension!");
+            }
                 IFileReader fileReader = fileReaderFactory.GetExtensionReader(extension);
                 productResults = fileReader.Read(extension, fileContent);
                 return productResults;            

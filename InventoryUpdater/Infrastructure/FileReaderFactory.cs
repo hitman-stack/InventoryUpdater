@@ -15,7 +15,7 @@ namespace InventoryUpdater.Infrastructure
                 return new YamlReader();
             else if (extension.ToUpper().Equals("JSON"))
             return new JsonReader();
-            return null;
+            throw new InvalidOperationException(message: "Extension not supported!");
         }
     }
 }

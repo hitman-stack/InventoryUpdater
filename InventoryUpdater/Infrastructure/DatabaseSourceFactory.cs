@@ -17,7 +17,7 @@ namespace InventoryUpdater.Infrastructure
                 return new SQLProvider();
             else if (databaseSource.ToUpper().Equals(Constants.SOURCEMONGODB))
                 return new MongoProvider();
-            return null;
+            throw new InvalidOperationException(message: "DatabaseSource not supported!");
         }
     }
 }
