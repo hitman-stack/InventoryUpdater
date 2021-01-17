@@ -1,4 +1,6 @@
-﻿using System;
+﻿using InventoryUpdater.Orchestrator;
+using System;
+using System.IO;
 
 namespace InventoryUpdater
 {
@@ -6,8 +8,19 @@ namespace InventoryUpdater
     {
         static void Main(string[] args)
         {
-            var inputSource = Console.ReadLine();
-            Console.WriteLine("Inventory Updater!");
+            try
+            {
+                Console.WriteLine("Please provide one of the below inputs \n import capterra feed-products/capterra.yaml or \n import softwareadvice feed-products/softwareadvice.json");
+                string inputSource = Console.ReadLine();
+                ProductImporterOrchestrator productImporterOrchestrator = new ProductImporterOrchestrator();
+                var result = productImporterOrchestrator.ProcessImporter(inputSource);
+                Console.WriteLine(result);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("Oops we got an exception {0}", ex);
+            }
+            
         }
     }
 }

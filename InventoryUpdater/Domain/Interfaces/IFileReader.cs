@@ -6,6 +6,6 @@ namespace InventoryUpdater.Domain.Interfaces
 {
     interface IFileReader
     {
-        List<string> Read(string input);
+        List<string> Read(string extension, string content);
     }
 }

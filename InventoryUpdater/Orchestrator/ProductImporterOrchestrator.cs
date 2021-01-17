@@ -1,20 +1,17 @@
 ﻿using InventoryUpdater.Domain.Interfaces;
+using InventoryUpdater.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace InventoryUpdater.Orchestrator
 {
-    class ProductImporterOrchestrator : IProductImporter
+    class ProductImporterOrchestrator
     {
-        public string Load(string input)
+         ProductImporterProvider productImporterProvider = new ProductImporterProvider();
+        public string ProcessImporter(string input)
         {
-            throw new NotImplementedException();
-        }
-
-        public string Save(string input)
-        {
-            throw new NotImplementedException();
+            return productImporterProvider.ProcessImporter(input);
         }
     }
 }
