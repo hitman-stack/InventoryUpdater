@@ -20,11 +20,23 @@ Considerations:
 - Please provide at least some unit tests (it is not required to write them for every class). Functional tests are also a plus.
 - Please provide a short summary detailing anything you think is relevant, for example:
   - Installation steps
-  - How to run your code / tests
+  	Install Visual Studio
+	Target Framework is .NetCore 3.1 so make sure you have that	
+  - How to run your code / tests  
+  	-Open project in Visual studio code 
+  	-Clean solution and Build again
+  	-Pass the path for both the file in InventoryUpdater\InventoryUpdater\Shared\Constants.cs
+ 	- For running the test just go to test and run all tests
   - Where to find your code
+  	https://github.com/hitman-stack/InventoryUpdater
   - Was it your first time writing a unit test, using a particular framework, etc?
+  	- No, I am using NUnit in my current project to write test cases
   - What would you have done differently if you had had more time
-  - Etc.
+  	- I would have written more test cases.
+	- Instead of reading the path from hardcoded path would have done something differently to get it directly
+	- More validations 
+	- Some datatabase methods
+ 
 * * * 
 
 ## Code Submission
@@ -33,15 +45,14 @@ As a result of this assignment we expect to recieve a link to your shared git re
 Having full commit history is optional but would be considered as a plus.
 
 
-##How I am planning to approach this problem :
+## How I am planning to approach this problem :
 - Have somefolder like:
-#Data acccess: All database logic will reside here(database connection and manupulation)
-#Infrastructure: Business logic will reside here 
-#Orchestrature: Will act like abstraction layer to hide the implementation
-#Shared: Will have some shared methods and constants
+### Data acccess: All database logic will reside here(database connection and manupulation)
+### Infrastructure: Business logic will reside here 
+### Orchestrature: Will act like abstraction layer to hide the implementation
+### Shared: Will have some shared methods and constants
 	Utils: All shared methods which can be used for multiple projects
 	Constants: Message or any other constants can be define here
-#Domain: Models and interface which are to implemented can be define here
-
-#One test solution to write unit test cases
-#One factory for product source as they will be changing and one for database source
+### Domain: Models and interface which are to implemented can be define here
+### Two factories one fore datareader and other for database sorce
+### One test solution to write unit test cases
