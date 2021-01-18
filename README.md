@@ -36,6 +36,10 @@ Considerations:
 	- Instead of reading the path from hardcoded path would have done something differently to get it directly
 	- More validations 
 	- Some datatabase methods
+	
+Package Reference: 
+	-https://www.newtonsoft.com/json
+	-https://github.com/aaubry/YamlDotNet
  
 * * * 
 
