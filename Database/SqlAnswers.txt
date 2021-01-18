@@ -1,0 +1,74 @@
+
+**— Test Starts Here —**
+
+1. Select users whose id is either 3,2 or 4
+- Please return at least: all user fields
+
+select first_name,last_name,email from users where id in (2,3,4)
+
+2. Count how many basic and premium listings each active user has
+- Please return at least: first_name, last_name, basic, premium
+
+Select first_name, last_name,Sum(Case When listing.status=2 then 1 Else 0 End) as basic, Sum(Case When listing.status=3 then 1 Else 0 End) as premium  
+From listings listing inner join users user on user.id=listing.user_id
+where user.status=2 group by first_name,last_name;
+
+3. Show the same count as before but only if they have at least ONE premium listing
+- Please return at least: first_name, last_name, basic, premium
+
+Select first_name, last_name,Sum(Case When listing.status=2 then 1 Else 0 End) as basic, Sum(Case When listing.status=3 then 1 Else 0 End) as premium  
+From listings listing inner join users user on user.id=listing.user_id
+where user.status=2 group by first_name,last_name having sum(Case When listing.status=3 then 1 Else 0 End)>=1;  
+
+4. How much revenue has each active vendor made in 2013
+- Please return at least: first_name, last_name, currency, revenue
+
+Select first_name, last_name, currency, sum(price) as  revenue
+From users user inner join listings listing on listing.user_id=user.id
+inner join clicks c on c.listing_id=listing.id
+Where user.status=2 and year(c.created)=2013
+Group by first_name, last_name, currency;
+
+5. Insert a new click for listing id 3, at $4.00
+- Find out the id of this new click. Please return at least: id
+INSERT INTO clicks
+            (listing_id, 
+             price, 
+             created) 
+VALUES      (3, 
+             4, 
+             Getdate()) 
+
+SELECT Scope_identity() AS 'id' 
+
+6. Show listings that have not received a click in 2013
+- Please return at least: listing_name
+SELECT listing.NAME 
+FROM   listings listing 
+       LEFT JOIN clicks click 
+              ON click.listing_id = listing.id 
+                 AND Year(click.created) = 2013 
+WHERE  click.id IS NULL 
+ORDER  BY listing.NAME 
+
+
+7. For each year show number of listings clicked and number of vendors who owned these listings
+- Please return at least: date, total_listings_clicked, total_vendors_affected
+SELECT Year(click.created)        AS date, 
+       Count(DISTINCT listing.NAME) AS 'total_listings_clicked', 
+       Count(DISTINCT user.id)   AS 'total_vendors_affected' 
+FROM   clicks click 
+       INNER JOIN listings listing 
+               ON click.listing_id = listing.id 
+       INNER JOIN users user 
+               ON user.id = listing.user_id 
+GROUP  BY Year(click.created) 
+ORDER  BY Year(click.created)
+
+8. Return a comma separated string of listing names for all active vendors
+- Please return at least: first_name, last_name, listing_names
+
+Select first_name, last_name, GROUP_CONCAT(listing.name) as listing_names
+From users user inner join listings listing on listing.user_id=user.id
+Where user.status=2  
+group by first_name,last_name; 
